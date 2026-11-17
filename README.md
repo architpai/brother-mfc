@@ -31,7 +31,8 @@ These options are available but not tested on hardware:
 
 - Grayscale (`--color Grayscale8`) and black-and-white (`--color BlackAndWhite1`) scans
 - Duplex printing, several copies, and paper sizes other than A4 for printing
- Printing uses the standard CUPS options for copies, sides, and paper size, so it should work with other printer queues that are installed in macOS. Other Brother models and other eSCL scanners will probably work, but they are not tested. If you try a different model, please open an issue or a pull request with the results. Include the model, the commands, and what worked.
+
+Printing uses the standard CUPS options for copies, sides, and paper size, so it should work with other printer queues that are installed in macOS. Other Brother models and other eSCL scanners will probably work, but they are not tested. If you try a different model, please open an issue or a pull request with the results. Include the model, the commands, and what worked.
 
 ## Requirements
 
