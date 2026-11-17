@@ -38,10 +38,10 @@ def log(message):
 
 
 def config_path():
-    if os.environ.get("BROTHER_SCAN_CONFIG"):
-        return Path(os.environ["BROTHER_SCAN_CONFIG"]).expanduser()
+    if os.environ.get("BROTHER_MFC_CONFIG"):
+        return Path(os.environ["BROTHER_MFC_CONFIG"]).expanduser()
     base = os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config"
-    return Path(base).expanduser() / "brother-scan" / "config.json"
+    return Path(base).expanduser() / "brother-mfc" / "config.json"
 
 
 def load_config():
@@ -301,7 +301,7 @@ def capture(args, config):
     base = resolve_scanner(args, config)
     caps, status = read_device(base, args.timeout)
     validate_device(caps, status, args)
-    archive = Path.home() / "Downloads" / ".brother-scan"
+    archive = Path.home() / "Downloads" / ".brother-mfc"
     archive.mkdir(mode=0o700, parents=True, exist_ok=True)
     session = Path(tempfile.mkdtemp(prefix="session-", dir=archive))
     settings = scan_settings(args)
@@ -360,7 +360,7 @@ def capture(args, config):
             except (OSError, ValueError, http.client.HTTPException) as error:
                 log(f"Could not cancel scan job: {error}")
         log(f"Captured files are retained. Rebuild without rescanning:\n"
-            f"  brother-scan assemble {session}")
+            f"  brother-mfc assemble {session}")
         raise
 
 

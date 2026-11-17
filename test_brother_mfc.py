@@ -12,7 +12,7 @@ import threading
 import unittest
 from unittest.mock import patch
 
-import brother_scan as scanner
+import brother_mfc as scanner
 
 
 CAPABILITIES = f'''<scan:ScannerCapabilities xmlns:scan="{scanner.NS['scan']}" xmlns:pwg="{scanner.NS['pwg']}">
@@ -29,7 +29,7 @@ CAPABILITIES = f'''<scan:ScannerCapabilities xmlns:scan="{scanner.NS['scan']}" x
 
 
 def isolate_environment(test, folder, **values):
-    environment = patch.dict(os.environ, {"BROTHER_SCAN_CONFIG": str(folder / "config.json"), **values})
+    environment = patch.dict(os.environ, {"BROTHER_MFC_CONFIG": str(folder / "config.json"), **values})
     environment.start()
     test.addCleanup(environment.stop)
     for name in ("BROTHER_SCANNER_HOST", "BROTHER_PRINTER", "XDG_CONFIG_HOME"):
@@ -174,7 +174,7 @@ print(String(data: try JSONSerialization.data(withJSONObject: result), encoding:
 
     def run_cli(self, *arguments):
         stdout, stderr = io.StringIO(), io.StringIO()
-        with patch.object(sys, "argv", ["brother-scan", *map(str, arguments)]), \
+        with patch.object(sys, "argv", ["brother-mfc", *map(str, arguments)]), \
                 patch.object(Path, "home", return_value=self.folder), \
                 contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
             code = scanner.main()
@@ -186,7 +186,7 @@ print(String(data: try JSONSerialization.data(withJSONObject: result), encoding:
         return json.loads(result.stdout)
 
     def sessions(self):
-        return list((self.folder / "Downloads" / ".brother-scan").glob("session-*"))
+        return list((self.folder / "Downloads" / ".brother-mfc").glob("session-*"))
 
     def test_status_never_creates_a_job(self):
         with fake_scanner([]) as (host, calls):
@@ -316,7 +316,7 @@ else:
 
     def run_cli(self, *arguments):
         stdout, stderr = io.StringIO(), io.StringIO()
-        with patch.object(sys, "argv", ["brother-scan", *map(str, arguments)]), \
+        with patch.object(sys, "argv", ["brother-mfc", *map(str, arguments)]), \
                 contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
             code = scanner.main()
         return code, stdout.getvalue(), stderr.getvalue()
@@ -432,7 +432,7 @@ class DiscoveryAndConfigTests(unittest.TestCase):
 
     def run_cli(self, *arguments):
         stdout, stderr = io.StringIO(), io.StringIO()
-        with patch.object(sys, "argv", ["brother-scan", *map(str, arguments)]), \
+        with patch.object(sys, "argv", ["brother-mfc", *map(str, arguments)]), \
                 contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
             code = scanner.main()
         return code, stdout.getvalue(), stderr.getvalue()

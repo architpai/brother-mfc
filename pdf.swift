@@ -105,7 +105,7 @@ do {
         }
         try save(document, arguments[3])
     default:
-        throw PDFError.invalid("Use brother-scan --help")
+        throw PDFError.invalid("Use brother-mfc --help")
     }
 } catch {
     FileHandle.standardError.write(Data("PDF error: \(error)\n".utf8))
