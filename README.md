@@ -21,11 +21,17 @@ It also contains a fix for a Brother problem. Some Brother models ignore eSCL sc
 
 | Model | Scan | Print | Notes |
 | --- | --- | --- | --- |
-| Brother MFC-J7500CDW | Verified on hardware: document feeder (single-sided and duplex), flatbed, all paper sizes, all resolutions | Printing a PDF from the macOS queue: verified on hardware | Feeder pages arrive upside down. Set `"rotate": 180` in the config file. |
+| Brother MFC-J7500CDW | Verified on hardware: color scans from the document feeder (single-sided and duplex) and the flatbed, all paper sizes, all resolutions | Verified on hardware: one copy, single-sided, A4 | Feeder pages arrive upside down. Set `"rotate": 180` in the config file. |
 
 Tested on an Apple Silicon Mac with macOS 26.
 
-The paper sizes are A4, A3, Letter, and Legal. The resolutions are 100, 200, 300, and 600 dpi. Printing uses the standard CUPS options for copies, sides, and paper size, so it should work with other printer queues that are installed in macOS. Other Brother models and other eSCL scanners will probably work, but they are not tested. If you try a different model, please open an issue or a pull request with the results. Include the model, the commands, and what worked.
+The paper sizes are A4, A3, Letter, and Legal. The resolutions are 100, 200, 300, and 600 dpi.
+
+These options are available but not tested on hardware:
+
+- Grayscale (`--color Grayscale8`) and black-and-white (`--color BlackAndWhite1`) scans
+- Duplex printing, several copies, and paper sizes other than A4 for printing
+ Printing uses the standard CUPS options for copies, sides, and paper size, so it should work with other printer queues that are installed in macOS. Other Brother models and other eSCL scanners will probably work, but they are not tested. If you try a different model, please open an issue or a pull request with the results. Include the model, the commands, and what worked.
 
 ## Requirements
 

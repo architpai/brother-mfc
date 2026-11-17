@@ -2,7 +2,7 @@
 
 These instructions are for any agent that can run shell commands on a Mac. They do not need a specific model, provider, or agent framework. See [README.md](README.md) for installation, configuration, and more examples.
 
-Only one model was tested on hardware: the Brother MFC-J7500CDW. On that model, these functions were verified: feeder scans (single-sided and duplex), flatbed scans, all paper sizes, all resolutions, and printing a PDF. Do not say that other models are verified. Other eSCL scanners and CUPS queues may work, but the user must check the result.
+Only one model was tested on hardware: the Brother MFC-J7500CDW. On that model, these functions were verified: color feeder scans (single-sided and duplex), color flatbed scans, all scan paper sizes, all resolutions, and printing one single-sided A4 copy. Grayscale and black-and-white scans, duplex printing, several copies, and printing on paper other than A4 were not tested. Do not say that they or other models are verified. Other eSCL scanners and CUPS queues may work, but the user must check the result.
 
 ## Find the command
 
